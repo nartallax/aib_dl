@@ -1,0 +1,6 @@
+js
+node_modules
+test_project/js
+test_project/node_modules
+ts/generated
+scripts/run.sh

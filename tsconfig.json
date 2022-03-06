@@ -1,0 +1,80 @@
+{ 
+    "imploderConfig": {
+        "target": "es2018",
+        "moduleBlacklistRegexp": ["^(?:/ts)?/?tests/.*?$", "^/?test_project/.*?$"],
+        "profiles": {
+            "release": {
+                "entryModule": "ts/main.ts",
+                "entryFunction": "main",
+                "outFile": "target/aib_dl.js"
+            }
+        }
+    },
+
+    "include": [
+        "./ts/**/*"
+    ],
+
+    "compilerOptions": {
+        "outDir": "js",
+        "rootDir": "./ts/",
+        "baseUrl": "./ts/",
+        "paths": {
+            "*": [
+                "./*",
+            ]
+        },
+
+
+        "moduleResolution": "Node",
+        "lib": ["dom", "es2017"],
+
+        "allowJs": false,
+
+        "noErrorTruncation": false,
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+
+        "noImplicitUseStrict": false,
+        "alwaysStrict": true,
+        "newLine": "lf",
+        "noEmitOnError": true,
+        "pretty": false,
+        "removeComments": true,
+        "sourceMap": false,
+        "declaration": false,
+        "emitBOM": false,
+        "module": "amd",
+        "target": "es5",
+
+        "importsNotUsedAsValues": "remove",
+        "forceConsistentCasingInFileNames": true,
+
+        /*
+        некоторые проверки было решено не включать, хоть они и есть
+
+        "exactOptionalPropertyTypes": true
+        добавляет разницу между a?: number и a?: number | undefined
+        в первом случае нельзя будет назначить undefined, но пропертя может отсутствовать
+        не хочу включать, потому что я и так обычно подразумеваю, что пропертя может не быть, или быть undefined
+        и не смог придумать реалистичного примера, когда это может подставить
+        а код раздувает весьма заметно
+        */
+        
+        "strict": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noStrictGenericChecks": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noUncheckedIndexedAccess": true
+    }
+}
