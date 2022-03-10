@@ -15,7 +15,7 @@ let cliArgs = new CLI({
 		linkCssExpression: CLI.str({keys: "--css", definition: "CSS selector that points to all the DOM nodes that we need to extract images from"}),
 		domAttributeName: CLI.str({keys: "--attribute", definition: "Name of attribute that contains URL of picture"}),
 		requestTimeout: CLI.double({keys: "--request-timeout", definition: "How long to wait before request retry, seconds", default: 180}),
-		downloadThreads: CLI.int({keys: "--download-threads", definition: "How many simultaneous requests are allowed to run", default: 3}),
+		downloadThreads: CLI.int({keys: "--download-threads", definition: "How many simultaneous requests are allowed to run", default: 30}),
 		rps: CLI.double({keys: "--rps", definition: "How many requests per second is allowed max", default: 1}),
 		retryCount: CLI.int({keys: "--retry", definition: "How many retries are allowed for a single URL before give-up", default: 3}),
 		failFast: CLI.bool({keys: "--fail-fast", definition: "If passed, first completely failed URL will also terminate the process"}),

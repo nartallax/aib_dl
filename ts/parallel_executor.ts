@@ -9,7 +9,7 @@ export class ParallelExecutor {
 		let completedEvent = Event()
 		let execCount = 0
 		for(let i = 0; i < items.length; i++){
-			if(execCount >= this.limit){
+			while(execCount >= this.limit){
 				await completedEvent.wait()
 			}
 
@@ -25,8 +25,9 @@ export class ParallelExecutor {
 					completedEvent.fire()
 					if(!(e instanceof Error)){
 						log("wtf: " + e)
+					} else {
+						onFailure(e, items[i]!)
 					}
-					onFailure(e, items[i]!)
 				}
 			)
 		}

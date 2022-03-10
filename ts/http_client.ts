@@ -47,11 +47,14 @@ export class HttpClient {
 					password: url.password,
 					path: url.pathname,
 					search: url.search,
-					headers, timeout: this.timeout
+					headers,
+					timeout: this.timeout * 1000
 				})
+				let response: Http.IncomingMessage | null = null
 				req.on("response", resp => {
+					response = resp
 					if(!resp.statusCode || resp.statusCode !== 200){
-						bad("Bad HTTP code (" + resp.statusCode + ") for URL " + urlString)
+						bad(new Error("Bad HTTP code (" + resp.statusCode + ") for URL " + urlString))
 						return
 					}
 					try {
@@ -68,6 +71,13 @@ export class HttpClient {
 					} catch(e){
 						bad(e)
 					}
+				})
+				req.on("timeout", () => {
+					req.destroy()
+					if(response){
+						response.destroy()
+					}
+					bad(new Error("HTTP request to " + urlString + " timed out"))
 				})
 				req.on("error", e => bad(e))
 				req.end()
